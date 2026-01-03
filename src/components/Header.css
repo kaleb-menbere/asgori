@@ -37,6 +37,14 @@
   text-decoration: none;
   padding-bottom: 4px;
 }
+/* Active link underline / highlight */
+.nav a.active {
+  color: #c4913f;
+}
+
+.nav a.active::after {
+  width: 100%;
+}
 
 /* Attractive hover effect */
 .nav a::after {
