@@ -1,31 +1,25 @@
 import { useState, useRef, useEffect } from "react";
 import "./Header.css";
+import { MdMenu, MdClose, MdPhone } from "react-icons/md";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const headerRef = useRef(null);
 
-  // Close menu when clicking outside
+  // Handle scroll effect
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        menuOpen &&
-        headerRef.current &&
-        !headerRef.current.contains(event.target)
-      ) {
-        setMenuOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [menuOpen]);
-
-  // Scrollspy effect
-  useEffect(() => {
-    const sections = document.querySelectorAll("section");
     const handleScroll = () => {
-      let scrollPos = window.scrollY + 80; // adjust for header height
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+
+      // Scrollspy
+      const sections = document.querySelectorAll("section");
+      let scrollPos = window.scrollY + 100;
       sections.forEach((section) => {
         if (
           section.offsetTop <= scrollPos &&
@@ -39,67 +33,85 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
-    <header className="header" ref={headerRef}>
-      <div className="header-container">
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuOpen && headerRef.current && !headerRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [menuOpen]);
 
-        {/* Logo */}
+  const navItems = [
+    { href: "#home", label: "Home" },
+    { href: "#services", label: "Services" },
+    { href: "#solutions", label: "Solutions" },
+    { href: "#before-after", label: "Gallery" },
+    { href: "#testimonials", label: "Testimonials" },
+    { href: "#contact", label: "Contact" },
+  ];
+
+  return (
+    <header 
+      className={`header ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`} 
+      ref={headerRef}
+    >
+      <div className="header-container">
+        {/* Logo - Just image */}
         <div className="logo-container">
-          <img
-            src="/images/logoc.png"
-            alt="ASGORI Finishing and Renovation Logo"
-            className="logo"
-          />
+          <a href="#home" className="logo-link">
+            <img
+              src="/images/logoc.png"
+              alt="ASGORI Finishing and Renovation"
+              className="logo"
+            />
+          </a>
         </div>
 
         {/* Navigation */}
         <nav className={`nav ${menuOpen ? "open" : ""}`}>
-          <a
-            href="#hero"
-            onClick={() => setMenuOpen(false)}
-            className={activeSection === "hero" ? "active" : ""}
-          >
-            Home
-          </a>
-          <a
-            href="#services"
-            onClick={() => setMenuOpen(false)}
-            className={activeSection === "services" ? "active" : ""}
-          >
-            Services
-          </a>
-          <a
-            href="#solutions"
-            onClick={() => setMenuOpen(false)}
-            className={activeSection === "solutions" ? "active" : ""}
-          >
-            Solutions
-          </a>
-          <a
-            href="#before-after"
-            onClick={() => setMenuOpen(false)}
-            className={activeSection === "before-after" ? "active" : ""}
-          >
-            Gallery
-          </a>
-          <a
-            href="#contact"
-            onClick={() => setMenuOpen(false)}
-            className={activeSection === "contact" ? "active" : ""}
-          >
-            Contact
-          </a>
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={() => setMenuOpen(false)}
+              className={`nav-link ${activeSection === item.href.replace('#', '') ? "active" : ""}`}
+            >
+              {item.label}
+              <span className="nav-indicator"></span>
+            </a>
+          ))}
+          
+          {/* Mobile contact button */}
+          <div className="mobile-contact">
+            <a href="tel:+251976957649" className="mobile-cta" onClick={() => setMenuOpen(false)}>
+              <MdPhone className="phone-icon" />
+              <span>Call Now</span>
+            </a>
+          </div>
         </nav>
+
+        {/* Desktop contact button */}
+        <div className="desktop-contact">
+          <a href="tel:+251976957649" className="contact-phone">
+            <MdPhone className="phone-icon" />
+            <span>+251 976 957 649</span>
+          </a>
+          <a href="#contact" className="cta-button">
+            Get Quote
+          </a>
+        </div>
 
         {/* Mobile menu button */}
         <button
-          className="menu-btn"
+          className="menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
-          Menu
+          {menuOpen ? <MdClose size={24} /> : <MdMenu size={24} />}
         </button>
-
       </div>
     </header>
   );
