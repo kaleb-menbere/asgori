@@ -59,9 +59,9 @@ const BeforeAfter = () => {
       <div className="ba-container">
         {/* Section Header */}
         <div className="ba-header">
-          <div className="section-subtitle">Our Work</div>
-          <h2 className="section-title">Transformation Gallery</h2>
-          <p className="section-description">
+          <div className="section-subtitles">Our Work</div>
+          <h2 className="section-titles">Transformation Gallery</h2>
+          <p className="section-descriptions">
             Witness the remarkable transformations we've delivered for our satisfied clients.
           </p>
           <div className="section-divider"></div>

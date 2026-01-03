@@ -30,7 +30,7 @@
   margin-right: auto;
 }
 
-.section-subtitle {
+.section-subtitles {
   display: inline-block;
   color: #c4913f;
   font-size: 1rem;
@@ -43,7 +43,7 @@
   border-radius: 50px;
 }
 
-.section-title {
+.section-titles {
   font-size: 3rem;
   color: #2f5586;
   margin-bottom: 20px;
@@ -51,7 +51,7 @@
   line-height: 1.2;
 }
 
-.section-description {
+.section-descriptions {
   font-size: 1.1rem;
   color: #666;
   line-height: 1.6;
