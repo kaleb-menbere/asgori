@@ -82,7 +82,7 @@ const Contact = () => {
                 <MdEmail size={28} />
               </div>
               <h3>Email Us</h3>
-              <p>info@asgori.com</p>
+              <p>info@asgorri.com</p>
               <p className="info-note">Response within 24 hours</p>
             </div>
 

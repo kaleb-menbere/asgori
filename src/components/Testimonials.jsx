@@ -7,7 +7,7 @@ const testimonials = [
     id: 1,
     name: 'Alemayehu Bekele',
     role: 'Homeowner, Bole',
-    feedback: 'ASGORI transformed our outdated apartment into a modern masterpiece. Their attention to detail and commitment to quality exceeded our expectations. Highly recommended!',
+    feedback: 'ASGORRI transformed our outdated apartment into a modern masterpiece. Their attention to detail and commitment to quality exceeded our expectations. Highly recommended!',
     rating: 5,
     project: '3-Bedroom Apartment Renovation'
   },
@@ -23,7 +23,7 @@ const testimonials = [
     id: 3,
     name: 'Daniel Tesfaye',
     role: 'Office Manager',
-    feedback: 'From initial consultation to final walkthrough, ASGORI demonstrated expertise and professionalism. Our office space now reflects our brand perfectly.',
+    feedback: 'From initial consultation to final walkthrough, ASGORRI demonstrated expertise and professionalism. Our office space now reflects our brand perfectly.',
     rating: 5,
     project: 'Corporate Office Design'
   },
@@ -39,7 +39,7 @@ const testimonials = [
     id: 5,
     name: 'Teshome Girma',
     role: 'Hotel General Manager',
-    feedback: 'Working with ASGORI was a game-changer for our hotel renovation. Their innovative solutions saved us time and money while delivering luxury finishes.',
+    feedback: 'Working with ASGORRI was a game-changer for our hotel renovation. Their innovative solutions saved us time and money while delivering luxury finishes.',
     rating: 5,
     project: 'Hotel Lobby & Rooms Renovation'
   }

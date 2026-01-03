@@ -64,7 +64,7 @@ function Header() {
           <a href="#home" className="logo-link">
             <img
               src="/images/logoc.png"
-              alt="ASGORI Finishing and Renovation"
+              alt="ASGORRI Finishing and Renovation"
               className="logo"
             />
           </a>

@@ -36,7 +36,7 @@ const Solutions = () => {
         {/* Section Header */}
         <div className="solutions-header">
           <div className="section-subtitles">Our Approach</div>
-          <h2 className="section-titles">Why Choose ASGORI?</h2>
+          <h2 className="section-titles">Why Choose ASGORRI?</h2>
           <p className="section-descriptions">
             We combine innovative solutions with proven methodologies 
             to deliver exceptional results for every project.

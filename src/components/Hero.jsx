@@ -52,7 +52,7 @@ const Hero = () => {
           <div className="hero-image-container">
             <img 
               src={ceoPhoto} 
-              alt="CEO & Founder - ASGORI Finishing & Renovation" 
+              alt="CEO & Founder - ASGORRI Finishing & Renovation" 
               className="ceo-image"
             />
             <div className="image-badge">

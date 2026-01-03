@@ -47,11 +47,11 @@ const Footer = () => {
             <div className="footer-logo">
               <img 
                 src="/images/logoc.png" 
-                alt="ASGORI Finishing and Renovation" 
+                alt="ASGORRI Finishing and Renovation" 
                 className="logo-footer"
               />
               <div className="logo-text">
-                <h3>ASGORI</h3>
+                <h3>ASGORRI</h3>
                 <p>Finishing & Renovation</p>
               </div>
             </div>
@@ -77,8 +77,8 @@ const Footer = () => {
                 <div>
                   <span className="contact-label">Email Us</span>
                   <div className="contact-values">
-                    <a href="mailto:info@asgori.com" className="contact-value">info@asgori.com</a>
-                    <a href="mailto:sales@asgori.com" className="contact-value">sales@asgori.com</a>
+                    <a href="mailto:info@asgorri.com" className="contact-value">info@asgorri.com</a>
+                    <a href="mailto:sales@asgorri.com" className="contact-value">sales@asgorri.com</a>
                   </div>
                 </div>
               </div>
@@ -169,7 +169,7 @@ const Footer = () => {
         <div className="footer-bottom">
           <div className="copyright">
             <p>
-              &copy; {currentYear} ASGORI Finishing and Renovation PLC. 
+              &copy; {currentYear} ASGORRI Finishing and Renovation PLC. 
               All rights reserved. | Reg. No: 123456/2013
             </p>
             <p className="disclaimer">
