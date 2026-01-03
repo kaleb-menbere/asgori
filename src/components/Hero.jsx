@@ -12,8 +12,8 @@ const Hero = () => {
         {/* Text Content */}
         <div className="hero-text">          
           <h1 className="hero-title">
-            Transform Your Space with
-            <span className="hero-highlight"> ASGORI</span> Excellence
+            Transform Your Space with-
+            <span className="hero-highlight"> ASGORRI</span> Excellence
           </h1>
           
           <p className="hero-subtitle">
