@@ -1,7 +1,7 @@
 import React from "react";
 import "./Hero.css";
 import ceoPhoto from "/images/CEOCR.png";
-import { MdArrowForward, MdStar, MdCheckCircle } from "react-icons/md";
+import { MdArrowForward, MdCheckCircle } from "react-icons/md";
 
 const Hero = () => {
   return (
@@ -12,7 +12,7 @@ const Hero = () => {
         {/* Text Content */}
         <div className="hero-text">          
           <h1 className="hero-title">
-            Transform Your Space with-
+            Transform Your Space with
             <span className="hero-highlight"> ASGORI</span> Excellence
           </h1>
           
