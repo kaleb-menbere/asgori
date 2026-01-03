@@ -1,0 +1,79 @@
+/* App wrapper */
+.app {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Section titles */
+.section-title {
+  font-size: 2.4rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #1f1f1f;
+}
+
+/* Section description */
+.section-text {
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Container utility */
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Grid utility (used in services, testimonials, etc.) */
+.grid {
+  display: grid;
+  gap: 30px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Responsive grids */
+@media (max-width: 1024px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-3,
+  .grid-2,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+/* Cards (services, testimonials) */
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Footer spacing fix */
+footer {
+  padding: 30px 20px;
+}

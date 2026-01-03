@@ -1,27 +1,97 @@
+/* Header base */
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 50px;
-  background: #222;
-  color: #fff;
+  width: 100%;
+  background-color: #000000; /* BLACK BACKGROUND */
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
 }
 
-.header .logo {
-  font-size: 1.8rem;
-  font-weight: bold;
+/* Container */
+.header-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.header nav a {
-  margin-left: 20px;
-  color: #fff;
-  text-decoration: none;
+/* Logo */
+.logo {
+  height: 42px;
+  width: auto;
+}
+
+/* Navigation (desktop) */
+.nav {
+  display: flex;
+  gap: 32px;
+}
+
+.nav a {
+  position: relative;
+  color: #ffffff;
+  font-size: 1rem;
   font-weight: 500;
+  text-decoration: none;
+  padding-bottom: 4px;
 }
 
-.header nav a:hover {
-  color: #f0a500;
+/* Attractive hover effect */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #c4913f; /* PRIMARY GOLD */
+  transition: width 0.25s ease;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+.nav a:hover {
+  color: #c4913f;
+}
+
+/* Mobile menu button */
+.menu-btn {
+  display: none;
+  background: transparent;
+  border: 2px solid #c4913f;
+  color: #c4913f;
+  padding: 6px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 768px) {
+
+  .menu-btn {
+    display: block;
+  }
+
+  .nav {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #000000;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    padding: 24px 0;
+    display: none;
+  }
+
+  .nav.open {
+    display: flex;
+  }
 }
