@@ -1,15 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Contact.css";
-import { MdEmail, MdPhone, MdLocationOn, MdSend, MdCheckCircle } from "react-icons/md";
+import { MdEmail, MdPhone, MdLocationOn, MdSend, MdCheckCircle, MdWarning } from "react-icons/md";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "", // New phone field
     message: ""
   });
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [submitCount, setSubmitCount] = useState(0);
+  const [isLimitReached, setIsLimitReached] = useState(false);
+
+  // Load submission count from localStorage on component mount
+  useEffect(() => {
+    const storedCount = localStorage.getItem('contactFormSubmitCount');
+    const lastResetDate = localStorage.getItem('contactFormResetDate');
+    const today = new Date().toDateString();
+
+    // Reset count if it's a new day
+    if (lastResetDate !== today) {
+      localStorage.setItem('contactFormSubmitCount', '0');
+      localStorage.setItem('contactFormResetDate', today);
+      setSubmitCount(0);
+      setIsLimitReached(false);
+    } else if (storedCount) {
+      const count = parseInt(storedCount, 10);
+      setSubmitCount(count);
+      if (count >= 10) {
+        setIsLimitReached(true);
+      }
+    }
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -20,6 +44,13 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Check rate limit before proceeding
+    if (isLimitReached) {
+      alert("Daily submission limit reached. Please try again tomorrow.");
+      return;
+    }
+
     setIsSending(true);
 
     try {
@@ -30,6 +61,7 @@ const Contact = () => {
 -------------------------
 👤 *Name:* ${formData.name}
 📧 *Email:* ${formData.email}
+📱 *Phone:* ${formData.phone}  {/* Phone added to message */}
 💬 *Message:* ${formData.message}
 📅 *Date:* ${new Date().toLocaleString()}
 -------------------------`;
@@ -45,9 +77,18 @@ const Contact = () => {
         })
       });
       
+      // Update submission count
+      const newCount = submitCount + 1;
+      setSubmitCount(newCount);
+      localStorage.setItem('contactFormSubmitCount', newCount.toString());
+      
+      if (newCount >= 10) {
+        setIsLimitReached(true);
+      }
+      
       // Success
       setIsSent(true);
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", message: "" });
       
       // Reset success message after 5 seconds
       setTimeout(() => {
@@ -121,9 +162,20 @@ const Contact = () => {
                 </div>
               )}
               
+              {/* Rate Limit Warning */}
+              {isLimitReached && (
+                <div className="limit-warning">
+                  <MdWarning size={24} />
+                  <div>
+                    <h4>Daily Limit Reached</h4>
+                    <p>You have submitted 10 messages today. Please try again tomorrow.</p>
+                  </div>
+                </div>
+              )}
+              
               <form onSubmit={handleSubmit} className="contact-form">
                 <div className="form-group">
-                  <label htmlFor="name">Full Name</label>
+                  <label htmlFor="name">Full Name *</label>
                   <input
                     type="text"
                     id="name"
@@ -137,7 +189,7 @@ const Contact = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email Address</label>
+                  <label htmlFor="email">Email Address *</label>
                   <input
                     type="email"
                     id="email"
@@ -151,7 +203,23 @@ const Contact = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message">Your Message</label>
+                  <label htmlFor="phone">Phone Number *</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+251 900 000 000"
+                    required
+                    pattern="^\+?[\d\s\-\(\)]+$" 
+                    className="form-input"
+                  />
+                  <small className="field-note">Include country code (e.g., +251)</small>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="message">Your Message *</label>
                   <textarea
                     id="message"
                     name="message"
@@ -167,23 +235,26 @@ const Contact = () => {
                 <button 
                   type="submit" 
                   className="submit-btn"
-                  disabled={isSending}
+                  disabled={isSending || isLimitReached} 
                 >
                   {isSending ? (
                     <>
                       <div className="spinner"></div>
                       Sending to Telegram...
                     </>
+                  ) : isLimitReached ? (
+                    "Daily Limit Reached"
                   ) : (
                     <>
                       <MdSend className="send-icon" />
-                      Send via Telegram Bot
+                      Send via Telegram Bot ({10 - submitCount} left today)
                     </>
                   )}
                 </button>
                 
                 <p className="telegram-note">
                   ⚡ Messages are instantly delivered to our Telegram
+                  {submitCount > 0 && ` | ${submitCount}/10 submissions today`}
                 </p>
               </form>
             </div>

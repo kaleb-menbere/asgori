@@ -158,6 +158,31 @@
   opacity: 0.9;
 }
 
+/* Limit Warning */
+.limit-warning {
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  animation: slideIn 0.5s ease-out;
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.2);
+}
+
+.limit-warning h4 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+}
+
+.limit-warning p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -218,6 +243,15 @@
   line-height: 1.5;
 }
 
+/* Field Note for Phone */
+.field-note {
+  display: block;
+  color: #666;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  font-style: italic;
+}
+
 /* Submit Button */
 .submit-btn {
   background: linear-gradient(135deg, #2f5586, #3d6cb9);
@@ -250,6 +284,12 @@
 .submit-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  background: linear-gradient(135deg, #666, #888);
+}
+
+.submit-btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 .send-icon {
@@ -312,6 +352,14 @@
   .info-card {
     padding: 25px 20px;
   }
+  
+  .success-message,
+  .limit-warning {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    padding: 15px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -328,9 +376,18 @@
     font-size: 1rem;
   }
   
-  .success-message {
-    flex-direction: column;
-    text-align: center;
-    gap: 10px;
+  .form-input,
+  .form-textarea {
+    padding: 12px 15px;
+  }
+  
+  .success-message h4,
+  .limit-warning h4 {
+    font-size: 1rem;
+  }
+  
+  .success-message p,
+  .limit-warning p {
+    font-size: 0.85rem;
   }
 }
