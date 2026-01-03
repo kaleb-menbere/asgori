@@ -1,41 +1,113 @@
+/* Hero Section */
 .hero {
+  background-color: #f5f5f5; /* light background for contrast */
+  padding: 120px 20px 80px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: auto;
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  height: 90vh;
-  background: url('/images/hero-bg.jpg') center/cover no-repeat;
-  color: #fff;
+  justify-content: space-between;
+  gap: 50px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+/* Text Content */
+.hero-text {
+  flex: 1;
+  min-width: 300px;
+  z-index: 2;
+}
+
+.hero-text h1 {
+  font-size: 2.8rem;
+  color: #c4913f; /* primary gold */
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  color: #2f5586; /* secondary blue */
+  margin-bottom: 30px;
+}
+
+/* CTA Button */
+.cta-btn {
+  display: inline-block;
+  background-color: #c4913f;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: #2f5586;
+  color: #ffffff;
+}
+
+/* CEO Image Container */
+.hero-image {
+  flex: 1;
+  min-width: 300px;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
-.hero-photo {
-  width: 180px;
-  height: 180px;
+/* Add subtle background shape behind CEO photo */
+.hero-image::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle at center, #c4913f33, transparent 70%);
   border-radius: 50%;
-  margin-bottom: 20px;
-  border: 4px solid #fff;
+  transform: translate(-50%, -50%);
+  z-index: -1;
 }
 
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 15px;
+/* CEO Photo Styling */
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
 }
 
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+/* Slight hover zoom effect for engagement */
+.hero-image img:hover {
+  transform: scale(1.03);
 }
 
-.hero-btn {
-  padding: 12px 25px;
-  background: #f0a500;
-  color: #222;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-}
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 30px;
+  }
 
-.hero-btn:hover {
-  background: #fff;
+  .hero-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  /* Adjust background circle behind CEO photo */
+  .hero-image::before {
+    width: 200px;
+    height: 200px;
+  }
 }

@@ -2,7 +2,7 @@
 .header {
   width: 100%;
   background-color: #000000; /* BLACK BACKGROUND */
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 1000;
 }
