@@ -1,19 +1,41 @@
-import React from 'react';
-import './Solutions.css';
+import React from "react";
+import "./Solutions.css";
 
-function Solutions() {
+const solutions = [
+  {
+    id: 1,
+    title: "Customized Renovation Plans",
+    description:
+      "We create personalized renovation plans tailored to your space, style, and budget.",
+  },
+  {
+    id: 2,
+    title: "Quality Materials & Execution",
+    description:
+      "We source premium materials and ensure precise execution for lasting results.",
+  },
+  {
+    id: 3,
+    title: "Timely Project Delivery",
+    description:
+      "Our team works efficiently to complete projects on schedule without compromising quality.",
+  },
+];
+
+const Solutions = () => {
   return (
-    <section id="solutions" className="solutions">
+    <section className="solutions" id="solutions">
       <h2>Our Solutions</h2>
-      <p>We provide tailored renovation and finishing solutions with quality and reliability:</p>
-      <ul>
-        <li>Professional craftsmanship</li>
-        <li>On-time project delivery</li>
-        <li>Premium materials & design</li>
-        <li>Customer satisfaction guaranteed</li>
-      </ul>
+      <div className="solutions-container">
+        {solutions.map((solution) => (
+          <div key={solution.id} className="solution-card">
+            <h3>{solution.title}</h3>
+            <p>{solution.description}</p>
+          </div>
+        ))}
+      </div>
     </section>
   );
-}
+};
 
 export default Solutions;

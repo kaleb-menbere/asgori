@@ -1,6 +1,32 @@
 .footer {
-  padding: 20px;
-  background: #222;
-  color: #fff;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 40px 20px;
   text-align: center;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer p {
+  margin-bottom: 15px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-links a {
+  color: #c4913f;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #2f5586;
 }
