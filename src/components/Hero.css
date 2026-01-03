@@ -1,113 +1,333 @@
 /* Hero Section */
 .hero {
-  background-color: #f5f5f5; /* light background for contrast */
-  padding: 120px 20px 80px 20px;
+  background: linear-gradient(135deg, #0a192f 0%, #1a365d 100%);
+  padding: 120px 20px 100px;
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-gradient-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(196, 145, 63, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(47, 85, 134, 0.1) 0%, transparent 50%);
+  z-index: 1;
 }
 
 .hero-container {
   max-width: 1200px;
-  margin: auto;
-  display: flex;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
   align-items: center;
-  justify-content: space-between;
-  gap: 50px;
-  flex-wrap: wrap;
   position: relative;
-}
-
-/* Text Content */
-.hero-text {
-  flex: 1;
-  min-width: 300px;
   z-index: 2;
 }
 
-.hero-text h1 {
-  font-size: 2.8rem;
-  color: #c4913f; /* primary gold */
-  margin-bottom: 20px;
+/* Hero Text */
+.hero-text {
+  color: white;
 }
 
-.hero-text p {
-  font-size: 1.1rem;
-  color: #2f5586; /* secondary blue */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(196, 145, 63, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(196, 145, 63, 0.3);
+  border-radius: 50px;
+  padding: 10px 20px;
   margin-bottom: 30px;
 }
 
-/* CTA Button */
-.cta-btn {
-  display: inline-block;
-  background-color: #c4913f;
-  color: white;
-  padding: 12px 28px;
-  border-radius: 6px;
+.badge-icon {
+  color: #c4913f;
+  font-size: 1.2rem;
+}
+
+.hero-badge span {
+  color: #e6b35a;
   font-weight: 500;
-  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
 }
 
-.cta-btn:hover {
-  background-color: #2f5586;
-  color: #ffffff;
+.hero-title {
+  font-size: 3.5rem;
+  line-height: 1.2;
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: white;
 }
 
-/* CEO Image Container */
-.hero-image {
-  flex: 1;
-  min-width: 300px;
-  text-align: center;
+.hero-highlight {
+  color: #c4913f;
   position: relative;
-  z-index: 2;
+  display: inline-block;
 }
 
-/* Add subtle background shape behind CEO photo */
-.hero-image::before {
-  content: "";
+.hero-highlight::after {
+  content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle at center, #c4913f33, transparent 70%);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: rgba(196, 145, 63, 0.2);
   z-index: -1;
+  border-radius: 4px;
 }
 
-/* CEO Photo Styling */
-.hero-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+.hero-subtitle {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #cbd5e0;
+  margin-bottom: 40px;
+  max-width: 90%;
+}
+
+/* Features */
+.hero-features {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.feature-icon {
+  color: #c4913f;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.feature-item span {
+  color: #e2e8f0;
+  font-size: 1.05rem;
+}
+
+/* CTA Buttons */
+.hero-cta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cta-btn-primary {
+  background: linear-gradient(135deg, #c4913f, #e6b35a);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(196, 145, 63, 0.3);
+}
+
+.cta-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(196, 145, 63, 0.4);
+  background: linear-gradient(135deg, #e6b35a, #c4913f);
+}
+
+.cta-btn-secondary {
+  background: transparent;
+  color: white;
+  padding: 16px 32px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.cta-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
+}
+
+.cta-icon {
+  font-size: 1.2rem;
   transition: transform 0.3s ease;
 }
 
-/* Slight hover zoom effect for engagement */
-.hero-image img:hover {
-  transform: scale(1.03);
+.cta-btn-primary:hover .cta-icon {
+  transform: translateX(5px);
+}
+
+/* CEO Image */
+.hero-image-wrapper {
+  position: relative;
+}
+
+.hero-image-container {
+  position: relative;
+}
+
+.ceo-image {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 2;
+  border: 8px solid rgba(255, 255, 255, 0.05);
+}
+
+.image-badge {
+  position: absolute;
+  bottom: 40px;
+  left: -20px;
+  background: linear-gradient(135deg, #2f5586, #3d6cb9);
+  padding: 15px 25px;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(47, 85, 134, 0.3);
+  z-index: 3;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.badge-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.badge-content strong {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.badge-content span {
+  color: #e2e8f0;
+  font-size: 0.9rem;
+}
+
+.floating-card {
+  position: absolute;
+  top: 40px;
+  right: -20px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  border: 2px solid rgba(196, 145, 63, 0.2);
+}
+
+.card-stat h3 {
+  color: #2f5586;
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.card-stat p {
+  color: #666;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Background Elements */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(196, 145, 63, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 1;
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hero-container {
-    flex-direction: column-reverse;
+    gap: 60px;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 20px 80px;
+  }
+  
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 50px;
     text-align: center;
-    gap: 30px;
   }
-
-  .hero-text h1 {
-    font-size: 2.2rem;
+  
+  .hero-title {
+    font-size: 2.5rem;
   }
-
-  .hero-text p {
-    font-size: 1rem;
+  
+  .hero-subtitle {
+    max-width: 100%;
+    font-size: 1.1rem;
   }
+  
+  .hero-features {
+    align-items: center;
+  }
+  
+  .hero-cta {
+    justify-content: center;
+  }
+  
+  .image-badge {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -20px;
+  }
+  
+  .floating-card {
+    right: 50%;
+    transform: translateX(50%);
+    top: -20px;
+  }
+  
+  .ceo-image {
+    margin: 0 auto;
+  }
+}
 
-  /* Adjust background circle behind CEO photo */
-  .hero-image::before {
-    width: 200px;
-    height: 200px;
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .cta-btn-primary,
+  .cta-btn-secondary {
+    width: 100%;
+    justify-content: center;
   }
 }
