@@ -86,7 +86,7 @@ function Header() {
           
           {/* Mobile contact button */}
           <div className="mobile-contact">
-            <a href="tel:+251976957649" className="mobile-cta" onClick={() => setMenuOpen(false)}>
+            <a href="tel:+251925476368" className="mobile-cta" onClick={() => setMenuOpen(false)}>
               <MdPhone className="phone-icon" />
               <span>Call Now</span>
             </a>
@@ -95,9 +95,9 @@ function Header() {
 
         {/* Desktop contact button */}
         <div className="desktop-contact">
-          <a href="tel:+251976957649" className="contact-phone">
+          <a href="tel:+251925476368" className="contact-phone">
             <MdPhone className="phone-icon" />
-            <span>+251 976 957 649</span>
+            <span>+251 925 476 368</span>
           </a>
           <a href="#contact" className="cta-button">
             Get Quote

@@ -67,8 +67,7 @@ const Footer = () => {
                 <div>
                   <span className="contact-label">Call Us</span>
                   <div className="contact-values">
-                    <a href="tel:+251976957649" className="contact-value">+251 976 957 649</a>
-                    <a href="tel:+251911223344" className="contact-value">+251 911 223 344</a>
+                    <a href="tel:+251925476368" className="contact-value">+251 925 476 368</a>
                   </div>
                 </div>
               </div>
@@ -170,7 +169,7 @@ const Footer = () => {
           <div className="copyright">
             <p>
               &copy; {currentYear} ASGORRI Finishing and Renovation PLC. 
-              All rights reserved. | Reg. No: 123456/2013
+              All rights reserved. 
             </p>
             <p className="disclaimer">
               Prices and availability are subject to change. All measurements are approximate.

@@ -57,14 +57,14 @@ const Hero = () => {
             />
             <div className="image-badge">
               <div className="badge-content">
-                <strong>Kaleb Menbere</strong>
+                <strong>Zelalem Lemecha</strong>
                 <span>CEO & Founder</span>
               </div>
             </div>
             <div className="floating-card">
               <div className="card-content">
                 <div className="card-stat">
-                  <h3>250+</h3>
+                  <h3>50+</h3>
                   <p>Projects Completed</p>
                 </div>
               </div>

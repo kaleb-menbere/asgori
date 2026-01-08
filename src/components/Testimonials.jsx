@@ -182,25 +182,6 @@ function Testimonials() {
           ))}
         </div>
 
-        {/* Stats Bar */}
-        <div className="stats-bar">
-          <div className="stat-item">
-            <h3>100%</h3>
-            <p>Client Satisfaction</p>
-          </div>
-          <div className="stat-item">
-            <h3>250+</h3>
-            <p>Projects Completed</p>
-          </div>
-          <div className="stat-item">
-            <h3>50+</h3>
-            <p>Repeat Clients</p>
-          </div>
-          <div className="stat-item">
-            <h3>5★</h3>
-            <p>Average Rating</p>
-          </div>
-        </div>
       </div>
     </section>
   );
