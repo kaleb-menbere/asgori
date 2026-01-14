@@ -100,7 +100,7 @@ function Header() {
             <span>+251 925 476 368</span>
           </a>
           <a href="#contact" className="cta-button">
-            Get Quote
+            Contact Us 
           </a>
         </div>
 

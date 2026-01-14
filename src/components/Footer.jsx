@@ -18,6 +18,14 @@ import {
   MdHomeRepairService,
   MdConstruction
 } from "react-icons/md";
+import { 
+  FaFacebook, 
+  FaTiktok, 
+  FaInstagram, 
+  FaLinkedin, 
+  FaTelegram,
+  FaYoutube
+} from "react-icons/fa";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -77,7 +85,6 @@ const Footer = () => {
                   <span className="contact-label">Email Us</span>
                   <div className="contact-values">
                     <a href="mailto:info@asgorri.com" className="contact-value">info@asgorri.com</a>
-                    <a href="mailto:sales@asgorri.com" className="contact-value">sales@asgorri.com</a>
                   </div>
                 </div>
               </div>
@@ -87,7 +94,6 @@ const Footer = () => {
                   <span className="contact-label">Our Offices</span>
                   <div className="contact-values">
                     <span className="contact-value">Main Office: Bole, Addis Ababa</span>
-                    <span className="contact-value">Branch: Kazanchis, Addis Ababa</span>
                   </div>
                 </div>
               </div>
@@ -103,7 +109,7 @@ const Footer = () => {
               <li><a href="#solutions">Solutions</a></li>
               <li><a href="#before-after">Project Gallery</a></li>
               <li><a href="#testimonials">Client Reviews</a></li>
-              <li><a href="#contact">Get Quote</a></li>
+              <li><a href="#contact">Contact Us</a></li>
             </ul>
           </div>
 
@@ -111,12 +117,9 @@ const Footer = () => {
           <div className="footer-section">
             <h4 className="section-title">Our Services</h4>
             <ul className="footer-links">
-              <li><a href="#services"><MdDesignServices /> Interior Design</a></li>
-              <li><a href="#services"><MdBusiness /> Exterior Design</a></li>
+              <li><a href="#services"><MdDesignServices /> Interior Design and Finishing</a></li>
+              <li><a href="#services"><MdBusiness /> Exterior Design and Finishing</a></li>
               <li><a href="#services"><MdConstruction /> Complete Renovation</a></li>
-              <li><a href="#services"><MdHomeRepairService /> Kitchen Remodeling</a></li>
-              <li><a href="#services"><MdHomeRepairService /> Bathroom Renovation</a></li>
-              <li><a href="#services"><MdBusiness /> Commercial Spaces</a></li>
             </ul>
           </div>
 
@@ -141,23 +144,6 @@ const Footer = () => {
                 <span className="time">24/7 Available</span>
               </div>
             </div>
-
-            <h4 className="section-title newsletter-title">Newsletter</h4>
-            <p className="newsletter-description">
-              Subscribe for design tips and exclusive offers.
-            </p>
-            <form className="newsletter-form">
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="newsletter-input"
-                required
-              />
-              <button type="submit" className="newsletter-btn">Subscribe</button>
-            </form>
-            <p className="privacy-note">
-              By subscribing, you agree to our Privacy Policy.
-            </p>
           </div>
         </div>
 
@@ -171,14 +157,10 @@ const Footer = () => {
               &copy; {currentYear} ASGORRI Finishing and Renovation PLC. 
               All rights reserved. 
             </p>
-            <p className="disclaimer">
-              Prices and availability are subject to change. All measurements are approximate.
-            </p>
           </div>
           
           <div className="footer-bottom-right">
-
-            {/* Social Links - Using available MD icons */}
+            {/* Social Links - Using proper social media icons */}
             <div className="social-links">
               <span className="social-label">Connect With Us:</span>
               <div className="social-icons">
@@ -189,7 +171,16 @@ const Footer = () => {
                   className="social-link"
                   aria-label="Facebook"
                 >
-                  <MdGroups size={18} /> {/* Groups icon for Facebook */}
+                  <FaFacebook size={18} />
+                </a>
+                <a 
+                  href="https://tiktok.com/@asgori" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="social-link"
+                  aria-label="TikTok"
+                >
+                  <FaTiktok size={18} />
                 </a>
                 <a 
                   href="https://instagram.com/asgori" 
@@ -198,7 +189,7 @@ const Footer = () => {
                   className="social-link"
                   aria-label="Instagram"
                 >
-                  <MdPhotoCamera size={18} /> {/* Camera icon for Instagram */}
+                  <FaInstagram size={18} />
                 </a>
                 <a 
                   href="https://linkedin.com/company/asgori" 
@@ -207,7 +198,7 @@ const Footer = () => {
                   className="social-link"
                   aria-label="LinkedIn"
                 >
-                  <MdBusiness size={18} /> {/* Business icon for LinkedIn */}
+                  <FaLinkedin size={18} />
                 </a>
                 <a 
                   href="https://telegram.me/asgori" 
@@ -216,11 +207,19 @@ const Footer = () => {
                   className="social-link"
                   aria-label="Telegram"
                 >
-                  <MdShare size={18} /> {/* Share icon for Telegram */}
+                  <FaTelegram size={18} />
+                </a>
+                <a 
+                  href="https://youtube.com/@asgori" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="social-link"
+                  aria-label="YouTube"
+                >
+                  <FaYoutube size={18} />
                 </a>
               </div>
             </div>
-
           </div>
         </div>
       </div>

@@ -91,7 +91,7 @@ const Solutions = () => {
               <p>Projects Completed</p>
             </div>
             <div className="stat-item">
-              <h4>100%</h4>
+              <h4>90%</h4>
               <p>Client Satisfaction</p>
             </div>
             <div className="stat-item">

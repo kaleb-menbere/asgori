@@ -8,7 +8,7 @@ import { MdDesignServices, MdRoofing, MdBuild } from "react-icons/md";
 const services = [
   {
     id: 1,
-    title: "Interior Design",
+    title: "Interior Design and Finishing",
     description:
       "Transform your living and working spaces with stylish, functional interior solutions. Custom designs that reflect your personality and enhance daily living.",
     image: interiorImg,
@@ -17,7 +17,7 @@ const services = [
   },
   {
     id: 2,
-    title: "Exterior Design",
+    title: "Exterior Design and Finishing",
     description:
       "Enhance building facades, landscapes, and outdoor spaces with modern, durable designs. Create stunning first impressions that last.",
     image: exteriorImg,
@@ -81,7 +81,7 @@ const Services = () => {
 
                 {/* CTA Button */}
                 <a href="#contact" className="service-cta">
-                  Get Quote
+                  Contact Us
                   <span className="cta-arrow">→</span>
                 </a>
               </div>

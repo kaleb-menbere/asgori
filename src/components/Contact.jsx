@@ -71,7 +71,8 @@ const Contact = () => {
     setIsSending(true);
 
     try {
-      const botToken = "8408802279:AAEJAYhJhwDfpbJcvl2jUd0Sh3rm5E097JI";
+      //const botToken = "8408802279:AAEJAYhJhwDfpbJcvl2jUd0Sh3rm5E097JI";
+      const botToken = "8548858327:AAGEKOALU90Kkbxe-7dUZtQQkopjUnAQX-c";
       const chatId = "746057611";
 
       const botMessage = `🚨 NEW CONTACT FORM 🚨

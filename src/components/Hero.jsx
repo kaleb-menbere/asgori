@@ -38,7 +38,7 @@ const Hero = () => {
           
           <div className="hero-cta">
             <a href="#contact" className="cta-btn-primary">
-              Get Free Consultation
+              Contact Us
               <MdArrowForward className="cta-icon" />
             </a>
             <a href="#services" className="cta-btn-secondary">
@@ -57,14 +57,14 @@ const Hero = () => {
             />
             <div className="image-badge">
               <div className="badge-content">
-                <strong>Zelalem Lemecha</strong>
+                <strong>Zerihun Lemecha</strong>
                 <span>CEO & Founder</span>
               </div>
             </div>
             <div className="floating-card">
               <div className="card-content">
                 <div className="card-stat">
-                  <h3>50+</h3>
+                  <h3>250+</h3>
                   <p>Projects Completed</p>
                 </div>
               </div>

@@ -1,54 +1,97 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./BeforeAfter.css";
-import { MdArrowBack, MdArrowForward, MdCompare } from "react-icons/md";
+import { MdCompare, MdPlayArrow, MdPause, MdVolumeUp, MdVolumeOff } from "react-icons/md";
 
-// Example projects
+// Example projects with videos
 const projects = [
   {
     id: 1,
-    title: "Living Room Transformation",
-    before: "/images/before-living.jpg",
-    after: "/images/after-living.jpg",
-    category: "Residential",
-    description: "Complete modern makeover with custom furniture and lighting"
+    title: "Modern Villa Exterior",
+    beforeVideo: "/Vid/A1.MOV",
+    afterVideo: "/Vid/A2.MOV",
+    category: "Exterior design and Finishing",
+    description: "Complete exterior transformation with modern facade and landscaping"
   },
   {
     id: 2,
-    title: "Kitchen Renovation",
-    before: "/images/before-kitchen.jpg",
-    after: "/images/after-kitchen.jpg",
-    category: "Kitchen",
-    description: "Premium cabinet installation with marble countertops"
+    title: "Office Building Facade",
+    beforeVideo: "/Vid/B1.MOV",
+    afterVideo: "/Vid/B2.MOV",
+    category: "Exterior design and Finishing",
+    description: "Commercial building exterior renovation with new cladding"
   },
   {
     id: 3,
-    title: "Office Space Modernization",
-    before: "/images/before-office.jpg",
-    after: "/images/after-office.jpg",
-    category: "Commercial",
-    description: "Open-plan office design with ergonomic solutions"
+    title: "Luxury Apartment Interior",
+    beforeVideo: "/videos/before-interior.mp4",
+    afterVideo: "/videos/after-interior.mp4",
+    category: "Interior design and Finishing",
+    description: "Complete interior makeover with custom furniture and lighting"
   },
   {
     id: 4,
-    title: "Bathroom Upgrade",
-    before: "/images/before-bathroom.jpg",
-    after: "/images/after-bathroom.jpg",
-    category: "Bathroom",
-    description: "Luxury bathroom renovation with premium fixtures"
+    title: "Hotel Lobby Design",
+    beforeVideo: "/videos/before-hotel-interior.mp4",
+    afterVideo: "/videos/after-hotel-interior.mp4",
+    category: "Interior design and Finishing",
+    description: "Luxury hotel lobby renovation with premium finishes"
+  },
+  {
+    id: 5,
+    title: "Complete House Renovation",
+    beforeVideo: "/videos/before-renovation.mp4",
+    afterVideo: "/videos/after-renovation.mp4",
+    category: "Full Renovation",
+    description: "Full structural renovation including interior and exterior"
+  },
+  {
+    id: 6,
+    title: "Commercial Space Remodel",
+    beforeVideo: "/videos/before-commercial-renovation.mp4",
+    afterVideo: "/videos/after-commercial-renovation.mp4",
+    category: "Full Renovation",
+    description: "Complete commercial space transformation"
   },
 ];
 
 const BeforeAfter = () => {
-  const [activeSlider, setActiveSlider] = useState(Array(projects.length).fill(50));
   const [activeCategory, setActiveCategory] = useState("All");
+  const [videoStates, setVideoStates] = useState(
+    projects.reduce((acc, project, index) => {
+      acc[index] = { before: false, after: false, muted: { before: true, after: true } };
+      return acc;
+    }, {})
+  );
 
-  const handleSliderChange = (index, value) => {
-    const newSliders = [...activeSlider];
-    newSliders[index] = value;
-    setActiveSlider(newSliders);
+  const videoRefs = useRef({});
+
+  const toggleVideo = (index, type) => {
+    const newVideoStates = { ...videoStates };
+    newVideoStates[index][type] = !newVideoStates[index][type];
+    setVideoStates(newVideoStates);
+
+    const videoKey = `${index}-${type}`;
+    if (videoRefs.current[videoKey]) {
+      if (newVideoStates[index][type]) {
+        videoRefs.current[videoKey].play();
+      } else {
+        videoRefs.current[videoKey].pause();
+      }
+    }
   };
 
-  const categories = ["All", "Residential", "Kitchen", "Commercial", "Bathroom"];
+  const toggleMute = (index, type) => {
+    const newVideoStates = { ...videoStates };
+    newVideoStates[index].muted[type] = !newVideoStates[index].muted[type];
+    setVideoStates(newVideoStates);
+
+    const videoKey = `${index}-${type}`;
+    if (videoRefs.current[videoKey]) {
+      videoRefs.current[videoKey].muted = newVideoStates[index].muted[type];
+    }
+  };
+
+  const categories = ["All", "Exterior design and Finishing", "Interior design and Finishing", "Full Renovation"];
   
   const filteredProjects = activeCategory === "All" 
     ? projects 
@@ -94,63 +137,83 @@ const BeforeAfter = () => {
                 <p className="project-description">{project.description}</p>
               </div>
 
-              {/* Slider Container */}
-              <div className="slider-wrapper">
-                <div className="slider-container">
-                  {/* After Image */}
-                  <img 
-                    src={project.after} 
-                    alt={`${project.title} After`} 
-                    className="after-img" 
-                    loading="lazy"
-                  />
-
-                  {/* Before Image Overlay */}
-                  <div
-                    className="before-img-wrapper"
-                    style={{ width: `${activeSlider[index]}%` }}
-                  >
-                    <img 
-                      src={project.before} 
-                      alt={`${project.title} Before`} 
-                      className="before-img" 
-                      loading="lazy"
-                    />
-                  </div>
-
-                  {/* Slider Controls */}
-                  <div className="slider-controls">
-                    <input
-                      type="range"
-                      min="0"
-                      max="100"
-                      value={activeSlider[index]}
-                      className="ba-slider"
-                      onChange={(e) => handleSliderChange(index, e.target.value)}
-                      aria-label="Before/After slider"
-                    />
-                    
-                    {/* Custom Slider Thumb */}
-                    <div 
-                      className="slider-handle" 
-                      style={{ left: `${activeSlider[index]}%` }}
+              {/* Side by Side Videos Container */}
+              <div className="videos-container">
+                {/* Before Video */}
+                <div className="video-column before-column">
+                  <div className="video-wrapper">
+                    <video
+                      ref={el => videoRefs.current[`${index}-before`] = el}
+                      className="video-element"
+                      loop
+                      muted
+                      playsInline
+                      preload="metadata"
                     >
-                      <div className="handle-dot"></div>
-                      <div className="handle-label">
-                        {activeSlider[index]}%
+                      <source src={project.beforeVideo} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                    <div className="video-overlay">
+                      <div className="video-title">Before</div>
+                      <div className="video-controls">
+                        <button 
+                          className="control-btn play-btn"
+                          onClick={() => toggleVideo(index, 'before')}
+                          aria-label={videoStates[index]?.before ? "Pause before video" : "Play before video"}
+                        >
+                          {videoStates[index]?.before ? <MdPause /> : <MdPlayArrow />}
+                        </button>
+                        <button 
+                          className="control-btn volume-btn"
+                          onClick={() => toggleMute(index, 'before')}
+                          aria-label={videoStates[index]?.muted?.before ? "Unmute before video" : "Mute before video"}
+                        >
+                          {videoStates[index]?.muted?.before ? <MdVolumeOff /> : <MdVolumeUp />}
+                        </button>
                       </div>
                     </div>
+                  </div>
+                </div>
 
-                    {/* Labels */}
-                    <div className="slider-labels">
-                      <span className="label label-before">
-                        <MdArrowBack />
-                        Before
-                      </span>
-                      <span className="label label-after">
-                        After
-                        <MdArrowForward />
-                      </span>
+                {/* Vertical Divider */}
+                <div className="vertical-divider">
+                  <div className="divider-line"></div>
+                  <div className="divider-text">VS</div>
+                  <div className="divider-line"></div>
+                </div>
+
+                {/* After Video */}
+                <div className="video-column after-column">
+                  <div className="video-wrapper">
+                    <video
+                      ref={el => videoRefs.current[`${index}-after`] = el}
+                      className="video-element"
+                      loop
+                      muted
+                      playsInline
+                      preload="metadata"
+                    >
+                      <source src={project.afterVideo} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                    <div className="video-overlay">
+                      <div className="video-title">After</div>
+                      <div className="video-controls">
+                        <button 
+                          className="control-btn play-btn"
+                          onClick={() => toggleVideo(index, 'after')}
+                          aria-label={videoStates[index]?.after ? "Pause after video" : "Play after video"}
+                        >
+                          {videoStates[index]?.after ? <MdPause /> : <MdPlayArrow />}
+                        </button>
+                        <button 
+                          className="control-btn volume-btn"
+                          onClick={() => toggleMute(index, 'after')}
+                          aria-label={videoStates[index]?.muted?.after ? "Unmute after video" : "Mute after video"}
+                        >
+                          {videoStates[index]?.muted?.after ? <MdVolumeOff /> : <MdVolumeUp />}
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
