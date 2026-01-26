@@ -19,7 +19,7 @@
   padding: 0 10px;
 }
 
-.section-subtitle {
+.section-subtitleb {
   color: #c4913f;
   font-size: 0.85rem;
   font-weight: 600;
@@ -32,7 +32,7 @@
   border-radius: 20px;
 }
 
-.section-title {
+.section-titleb {
   font-size: 1.8rem;
   color: #2f5586;
   margin-bottom: 15px;
@@ -40,7 +40,7 @@
   line-height: 1.3;
 }
 
-.section-description {
+.section-descriptionb {
   color: #666;
   font-size: 1rem;
   line-height: 1.6;

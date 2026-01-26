@@ -103,9 +103,9 @@ const BeforeAfter = () => {
     <section className="before-after" id="before-after">
       <div className="ba-container">
         <div className="ba-header">
-          <div className="section-subtitle">Our Portfolio</div>
-          <h2 className="section-title">Before & After Gallery</h2>
-          <p className="section-description">
+          <div className="section-subtitleb">Our Portfolio</div>
+          <h2 className="section-titleb">Before & After Gallery</h2>
+          <p className="section-descriptionb">
             See the transformation from start to finish. Each project showcases our commitment to quality.
           </p>
           <div className="divider"></div>
