@@ -7,12 +7,14 @@ import BeforeAfter from './components/BeforeAfter';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import HorizontalSlideshow from './components/HorizontalSlideshow';
 
 function App() {
   return (
     <div>
       <Header />
       <Hero />
+      <HorizontalSlideshow />
       <Services />
       <Solutions />
       <BeforeAfter />
