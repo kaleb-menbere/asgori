@@ -82,6 +82,11 @@
     0 2px 8px rgba(0, 0, 0, 0.9),
     0 4px 16px rgba(0, 0, 0, 0.8),
     0 0 30px rgba(212, 175, 55, 0.3);
+  min-height: 4.8em; /* Add min-height to prevent layout shift */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .quote-subtext {
@@ -123,6 +128,62 @@
   background: linear-gradient(90deg, transparent, #d4af37, transparent);
 }
 
+/* Typing cursor animation */
+.typing-cursor {
+  display: inline-block;
+  margin-left: 4px;
+  animation: blink 1s infinite;
+  color: #d4af37;
+  font-weight: 400;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Typing progress indicator on active dot */
+.nav-dot.active.typing::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  animation: typingPulse 1.5s infinite;
+}
+
+@keyframes typingPulse {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+/* Disable navigation during typing/transition */
+.nav-arrow.disabled,
+.nav-dot.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.nav-arrow.disabled:hover {
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%) scale(1);
+  box-shadow: none;
+}
+
+.nav-dot.disabled:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: none;
+}
+
 /* Navigation Arrows */
 .nav-arrow {
   position: absolute;
@@ -146,7 +207,7 @@
   backdrop-filter: blur(5px);
 }
 
-.nav-arrow:hover {
+.nav-arrow:hover:not(.disabled) {
   background: rgba(212, 175, 55, 0.9);
   border-color: #d4af37;
   transform: translateY(-50%) scale(1.1);
@@ -191,7 +252,7 @@
   position: relative;
 }
 
-.nav-dot:hover {
+.nav-dot:hover:not(.disabled) {
   background: rgba(212, 175, 55, 0.8);
   transform: scale(1.4);
   border-color: #d4af37;
@@ -282,6 +343,7 @@
   
   .quote-text {
     font-size: 3.5rem;
+    min-height: 4.2em;
   }
   
   .quote-subtext {
@@ -302,6 +364,7 @@
   
   .quote-text {
     font-size: 3rem;
+    min-height: 3.6em;
   }
   
   .quote-subtext {
@@ -335,6 +398,7 @@
   
   .quote-text {
     font-size: 2.5rem;
+    min-height: 3em;
   }
   
   .quote-subtext {
@@ -368,6 +432,10 @@
   .navigation-dots {
     bottom: 2rem;
   }
+  
+  .typing-cursor {
+    margin-left: 2px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -378,6 +446,8 @@
   
   .quote-text {
     font-size: 2rem;
+    min-height: 2.5em;
+    line-height: 1.4;
   }
   
   .quote-subtext {
@@ -415,6 +485,11 @@
     width: 12px;
     height: 12px;
   }
+  
+  .typing-cursor {
+    margin-left: 1px;
+    font-size: 0.9em;
+  }
 }
 
 @media (max-width: 400px) {
@@ -425,6 +500,7 @@
   
   .quote-text {
     font-size: 1.7rem;
+    min-height: 2.2em;
   }
   
   .quote-subtext {
@@ -440,6 +516,10 @@
   .nav-arrow svg {
     width: 20px;
     height: 20px;
+  }
+  
+  .typing-cursor {
+    font-size: 0.8em;
   }
 }
 
@@ -467,4 +547,64 @@
 /* Ensure text is always readable */
 .text-content {
   mix-blend-mode: normal;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .slideshow-track,
+  .quote-text,
+  .quote-icon,
+  .nav-dot,
+  .nav-arrow,
+  .typing-cursor {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .typing-cursor {
+    opacity: 0.5;
+  }
+}
+
+/* Add to the bottom of your existing CSS file */
+
+/* Slideshow paused overlay */
+.slideshow-paused-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeInOverlay 0.5s ease forwards;
+  text-align: center;
+  padding: 2rem;
+  backdrop-filter: blur(2px);
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Ensure cursor is hidden when user is inactive */
+.quote-text .typing-cursor {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.quote-text .typing-cursor.hidden {
+  opacity: 0;
 }
