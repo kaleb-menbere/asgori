@@ -10,6 +10,7 @@ const HorizontalSlideshow = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [isPageVisible, setIsPageVisible] = useState(true);
   const [hasUserInteracted, setHasUserInteracted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
   const slideshowRef = useRef(null);
   const autoPlayRef = useRef(null);
@@ -18,6 +19,7 @@ const HorizontalSlideshow = () => {
   const lastSoundTimeRef = useRef(0);
   const soundEnabledRef = useRef(true);
   const interactionTimeoutRef = useRef(null);
+  const touchMoveRef = useRef(null);
 
   const slides = [
     {
@@ -69,6 +71,20 @@ const HorizontalSlideshow = () => {
 
   // Check if user is viewing the page AND has interacted
   const isUserActive = isPageVisible && hasUserInteracted;
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
 
   // Initialize simple audio - no external files
   useEffect(() => {
@@ -159,7 +175,7 @@ const HorizontalSlideshow = () => {
   // Create a pleasant, subtle typing sound - ONLY when user is active
   const playTypingSound = useCallback(() => {
     // Only play sound if user is active AND has interacted
-    if (!isUserActive || !soundEnabledRef.current) return;
+    if (!isUserActive || !soundEnabledRef.current || isMobile) return; // Disable sound on mobile
     
     // Rate limiting: don't play sounds too close together
     const now = Date.now();
@@ -208,9 +224,9 @@ const HorizontalSlideshow = () => {
       // If audio fails, disable sounds
       soundEnabledRef.current = false;
     }
-  }, [isUserActive]);
+  }, [isUserActive, isMobile]);
 
-  // Typewriter effect for current slide - ONLY when user is active
+  // Typewriter effect for current slide - optimized for mobile
   const typeQuote = useCallback((slideIndex) => {
     // Only type if user is active AND has interacted
     if (!isUserActive) {
@@ -260,25 +276,27 @@ const HorizontalSlideshow = () => {
           [slideIndex]: fullQuote.substring(0, currentCharIndex + 1)
         }));
         
-        // Play sound for some characters (not every character) - ONLY when active
+        // Play sound for some characters (not every character) - ONLY when active and not mobile
         soundCounter++;
-        if (soundCounter % 2 === 0 && Math.random() > 0.4) {
+        if (!isMobile && soundCounter % 2 === 0 && Math.random() > 0.4) {
           playTypingSound();
         }
         
         currentCharIndex++;
         
-        // Variable typing speed for natural feel
+        // Faster typing speed on mobile for better UX
+        const typingSpeed = isMobile ? 20 : 35; // Base speed
+        
         const isSpace = currentChar === ' ';
         const isPunctuation = /[.,!?;:]/.test(currentChar);
         
         let speed;
         if (isSpace) {
-          speed = 70 + Math.random() * 30;
+          speed = (isMobile ? 40 : 70) + Math.random() * 30;
         } else if (isPunctuation) {
-          speed = 120 + Math.random() * 50;
+          speed = (isMobile ? 80 : 120) + Math.random() * 50;
         } else {
-          speed = 35 + Math.random() * 25;
+          speed = typingSpeed + Math.random() * 25;
         }
         
         typingTimeoutRef.current = setTimeout(typeNextChar, speed);
@@ -289,7 +307,7 @@ const HorizontalSlideshow = () => {
     
     // Start typing after a short delay
     typingTimeoutRef.current = setTimeout(typeNextChar, 300);
-  }, [isUserActive, playTypingSound]);
+  }, [isUserActive, playTypingSound, isMobile]);
 
   // Auto-play slides (only when user is active)
   useEffect(() => {
@@ -300,11 +318,14 @@ const HorizontalSlideshow = () => {
     }
     
     if (isUserActive) {
+      // Longer interval on mobile to give users time to read
+      const interval = isMobile ? 10000 : 8000;
+      
       autoPlayRef.current = setInterval(() => {
         if (!isTyping && isUserActive) {
           nextSlide();
         }
-      }, 8000);
+      }, interval);
     }
 
     return () => {
@@ -312,7 +333,7 @@ const HorizontalSlideshow = () => {
         clearInterval(autoPlayRef.current);
       }
     };
-  }, [currentIndex, isTyping, isUserActive]);
+  }, [currentIndex, isTyping, isUserActive, isMobile]);
 
   // Start typing when slide changes (only when user is active)
   useEffect(() => {
@@ -384,35 +405,48 @@ const HorizontalSlideshow = () => {
     setTimeout(() => setIsAnimating(false), 500);
   }, [isAnimating, currentIndex, isTyping, isUserActive]);
 
-  // Touch handlers for mobile swipe - also track interaction
+  // Improved touch handlers for mobile swipe
   const handleTouchStart = (e) => {
     if (!isUserActive) {
       setHasUserInteracted(true);
     }
-    setTouchStartX(e.touches[0].clientX);
+    const touch = e.touches[0];
+    setTouchStartX(touch.clientX);
+    setTouchEndX(touch.clientX); // Initialize touchEndX
+    touchMoveRef.current = false;
   };
 
   const handleTouchMove = (e) => {
-    setTouchEndX(e.touches[0].clientX);
+    if (!touchStartX) return;
+    
+    const touch = e.touches[0];
+    setTouchEndX(touch.clientX);
+    touchMoveRef.current = true;
+    
+    // Prevent default on significant horizontal movement to avoid page scroll
+    const diff = Math.abs(touch.clientX - touchStartX);
+    if (diff > 10) {
+      e.preventDefault();
+    }
   };
 
   const handleTouchEnd = () => {
-    if (!touchStartX || !touchEndX) return;
+    if (!touchStartX || !touchEndX || !touchMoveRef.current) return;
     
     const distance = touchStartX - touchEndX;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
+    const minSwipeDistance = isMobile ? 40 : 50; // Smaller threshold on mobile
     
-    if (isLeftSwipe) {
+    if (Math.abs(distance) < minSwipeDistance) return;
+    
+    if (distance > minSwipeDistance) {
       nextSlide();
-    }
-    
-    if (isRightSwipe) {
+    } else if (distance < -minSwipeDistance) {
       prevSlide();
     }
     
     setTouchStartX(0);
     setTouchEndX(0);
+    touchMoveRef.current = false;
   };
 
   // Pause auto-play on hover - also track interaction
@@ -429,13 +463,16 @@ const HorizontalSlideshow = () => {
 
   const handleMouseLeave = useCallback(() => {
     if (isUserActive && !isTyping && !autoPlayRef.current) {
+      // Longer interval on mobile
+      const interval = isMobile ? 10000 : 8000;
+      
       autoPlayRef.current = setInterval(() => {
         if (!isTyping && isUserActive) {
           nextSlide();
         }
-      }, 8000);
+      }, interval);
     }
-  }, [isUserActive, isTyping, nextSlide]);
+  }, [isUserActive, isTyping, nextSlide, isMobile]);
 
   // Handle click interactions for navigation
   const handleNavClick = useCallback((handler) => {
@@ -453,6 +490,13 @@ const HorizontalSlideshow = () => {
     return slides[slideIndex].quote;
   };
 
+  // Handle container click for initial interaction
+  const handleContainerClick = () => {
+    if (!hasUserInteracted) {
+      setHasUserInteracted(true);
+    }
+  };
+
   return (
     <section className="horizontal-slideshow-section" id="inspiration">
       <div className="slideshow-container"
@@ -462,11 +506,11 @@ const HorizontalSlideshow = () => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        onClick={() => !hasUserInteracted && setHasUserInteracted(true)}
+        onClick={handleContainerClick}
       >
         <div className="slideshow-track"
           style={{
-            transform: `translateX(-${currentIndex * 100}vw)`,
+            transform: `translateX(-${currentIndex * 100}%)`,
             transition: isAnimating ? 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
           }}
         >
@@ -474,7 +518,10 @@ const HorizontalSlideshow = () => {
             <div 
               key={index}
               className="slideshow-slide"
-              style={{ backgroundImage: `url(${slide.image})` }}
+              style={{ 
+                backgroundImage: `url(${slide.image})`,
+                backgroundAttachment: isMobile ? 'scroll' : 'fixed'
+              }}
             >
               <div className="slide-content">
                 <div className="text-content">
@@ -537,7 +584,7 @@ const HorizontalSlideshow = () => {
       {(!isUserActive || !hasUserInteracted) && (
         <div className="slideshow-paused-overlay">
           {!hasUserInteracted ? (
-            "Click or tap to activate slideshow"
+            isMobile ? "Tap to activate slideshow" : "Click to activate slideshow"
           ) : (
             "Slideshow paused - Return to view"
           )}
