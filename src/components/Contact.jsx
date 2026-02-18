@@ -185,7 +185,7 @@ const Contact = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Kaleb Menbere"
+                    placeholder="example: Kaleb Menbere"
                     required
                     className="form-input"
                   />
@@ -199,7 +199,7 @@ const Contact = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="kalebmenbere@gmail.com"
+                    placeholder="example: kalebmenbere@gmail.com"
                     required
                     className="form-input"
                   />
@@ -213,7 +213,7 @@ const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="+251 976 957 649"
+                    placeholder="example: +251 976 957 649"
                     required
                     pattern="^(?:\+251|251|0)?[79]\d{8}$"
                     className="form-input"
