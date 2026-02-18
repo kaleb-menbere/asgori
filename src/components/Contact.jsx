@@ -213,7 +213,7 @@ const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="example: +251 976 957 649"
+                    placeholder="example: +251976957649"
                     required
                     pattern="^(?:\+251|251|0)?[79]\d{8}$"
                     className="form-input"

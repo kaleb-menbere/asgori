@@ -155,7 +155,7 @@ const Footer = () => {
           <div className="copyright">
             <p>
               &copy; {currentYear} ASGORRI Finishing and Renovation PLC. 
-              All rights reserved. 
+              All rights reserved. Developed by <a style={{color: '#ffffff'}} href="https://kaleb-sable.vercel.app/" target="_blank" rel="noopener noreferrer">Kaleb Menbere</a>.
             </p>
           </div>
           
