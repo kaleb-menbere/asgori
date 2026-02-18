@@ -192,7 +192,7 @@ const Footer = () => {
                   <FaLinkedin size={18} />
                 </a>
                 <a 
-                  href="https://telegram.me/asgorri" 
+                  href="https://telegram.me/zed381223" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="social-link"
