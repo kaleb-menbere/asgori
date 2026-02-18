@@ -128,7 +128,7 @@ const Contact = () => {
                 <MdEmail size={28} />
               </div>
               <h3>Email Us</h3>
-              <p>info@asgorri.com</p>
+              <p>asgorrizerihun@gmail.com</p>
               <p className="info-note">Response within 24 hours</p>
             </div>
 

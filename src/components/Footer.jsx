@@ -84,7 +84,7 @@ const Footer = () => {
                 <div>
                   <span className="contact-label">Email Us</span>
                   <div className="contact-values">
-                    <a href="mailto:info@asgorri.com" className="contact-value">info@asgorri.com</a>
+                    <a href="mailto:asgorrizerihun@gmail.com" className="contact-value">asgorrizerihun@gmail.com</a>
                   </div>
                 </div>
               </div>
@@ -165,16 +165,7 @@ const Footer = () => {
               <span className="social-label">Connect With Us:</span>
               <div className="social-icons">
                 <a 
-                  href="https://facebook.com/asgori" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="social-link"
-                  aria-label="Facebook"
-                >
-                  <FaFacebook size={18} />
-                </a>
-                <a 
-                  href="https://tiktok.com/@asgori" 
+                  href="https://tiktok.com/@asgorri1" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="social-link"
@@ -183,7 +174,7 @@ const Footer = () => {
                   <FaTiktok size={18} />
                 </a>
                 <a 
-                  href="https://instagram.com/asgori" 
+                  href="https://instagram.com/asgorri" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="social-link"
@@ -192,7 +183,7 @@ const Footer = () => {
                   <FaInstagram size={18} />
                 </a>
                 <a 
-                  href="https://linkedin.com/company/asgori" 
+                  href="https://www.linkedin.com/in/zerihun-lemecha-2106403b1/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="social-link"
@@ -201,7 +192,7 @@ const Footer = () => {
                   <FaLinkedin size={18} />
                 </a>
                 <a 
-                  href="https://telegram.me/asgori" 
+                  href="https://telegram.me/asgorri" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="social-link"
@@ -210,7 +201,7 @@ const Footer = () => {
                   <FaTelegram size={18} />
                 </a>
                 <a 
-                  href="https://youtube.com/@asgori" 
+                  href="https://youtube.com/@asgorri" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="social-link"

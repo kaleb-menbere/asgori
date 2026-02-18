@@ -21,15 +21,15 @@ const testimonials = [
   },
   {
     id: 3,
-    name: 'Daniel Tesfaye',
-    role: 'Office Manager',
-    feedback: 'From initial consultation to final walkthrough, ASGORRI demonstrated expertise and professionalism. Our office space now reflects our brand perfectly.',
+    name: 'Rahel Abebe',
+    role: 'Ground +3',
+    feedback: 'From initial consultation to final walkthrough, ASGORRI demonstrated expertise and professionalism. Our Ground +3 space now reflects our brand perfectly.',
     rating: 5,
     project: 'Corporate Office Design'
   },
   {
     id: 4,
-    name: 'Meron Abebe',
+    name: 'Tezazu Wolde',
     role: 'Villa Owner',
     feedback: 'The exterior renovation of our villa has received countless compliments. The team used premium materials and the results are stunning.',
     rating: 5,
@@ -37,9 +37,9 @@ const testimonials = [
   },
   {
     id: 5,
-    name: 'Teshome Girma',
-    role: 'Hotel General Manager',
-    feedback: 'Working with ASGORRI was a game-changer for our hotel renovation. Their innovative solutions saved us time and money while delivering luxury finishes.',
+    name: 'Keder Seid',
+    role: 'Full Renovation',
+    feedback: 'Working with ASGORRI was a game-changer for our Full renovation. Their innovative solutions saved us time and money while delivering luxury finishes.',
     rating: 5,
     project: 'Hotel Lobby & Rooms Renovation'
   }
